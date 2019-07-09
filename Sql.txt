@@ -1,8 +1,0 @@
-alter Procedure [dbo].[GetAllDetailsOFCMB]
-as 
-begin
-
-select Name as WHouse,MasterId as Wid from mr004 where  type&0x80 <> 0 
-select Code2 as ProdName,MasterId as Pid from mr001 where  type&0x80 <> 0
-select DISTINCT BatchNo as batchNumber from batch where 1 > 2
-end

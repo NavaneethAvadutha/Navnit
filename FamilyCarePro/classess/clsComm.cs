@@ -14,10 +14,32 @@ namespace FamilyCarePro.Classess
         {
             //Data Source=AHMED-VAIO\SQL2008R2;Initial Catalog=focus50w0;UID=sa;PWD=focus;Integrated Security=false
             var g_CompCode = "";
-            g_CompCode = "060";
+            g_CompCode = "030";
             try
             {
                 g_CompCode = Default_Company();
+            }
+            catch (Exception e)
+            {
+                g_CompCode = "1b0";
+                //throw;
+            }
+
+            //var clsRg = new clsReg();
+
+            //return "Data Source=" + clsRg.Read("SQLServerName") +";Initial Catalog=Focus80x0" +";UID=" + clsRg.Read("SQLLoginID") +";PWD=" + clsRg.Read("SQLPW") +";Integrated Security=false";
+            //return "Data Source=" + SQLServerName() + ";Initial Catalog=Focus8" + Default_Company() + ";" + "UId=" + SQLLoginID() + ";" + "Pwd=" + SQLPW() + ";";
+            //return "Data Source=" + SQLServerName() + ";Initial Catalog=Focus5" + g_CompCode + ";" + "UId=" + SQLLoginID() + ";" + "Pwd=" + SQLPW() + ";";
+            return "Data Source=" + SQLServerName() + ";Initial Catalog=Focus5" + g_CompCode + ";" + "UId=" + SQLLoginID() + ";" + "Pwd=" + SQLPW() + ";" /*+ "Multipleconnection=" + Multipleconnection() + ";"*/;  // + "Multipleconnection="+ Multipleconnection()+ ";";
+        }
+        public static string sqlConectionStr_IntDB()
+        {
+            //Data Source=AHMED-VAIO\SQL2008R2;Initial Catalog=focus50w0;UID=sa;PWD=focus;Integrated Security=false
+            var g_CompCode = "";
+            g_CompCode = "060";
+            try
+            {
+                g_CompCode = Default_Company2();
             }
             catch (Exception e)
             {
@@ -30,30 +52,9 @@ namespace FamilyCarePro.Classess
             //return "Data Source=" + clsRg.Read("SQLServerName") +";Initial Catalog=Focus80x0" +";UID=" + clsRg.Read("SQLLoginID") +";PWD=" + clsRg.Read("SQLPW") +";Integrated Security=false";
             //return "Data Source=" + SQLServerName() + ";Initial Catalog=Focus8" + Default_Company() + ";" + "UId=" + SQLLoginID() + ";" + "Pwd=" + SQLPW() + ";";
             //return "Data Source=" + SQLServerName() + ";Initial Catalog=Focus5" + g_CompCode + ";" + "UId=" + SQLLoginID() + ";" + "Pwd=" + SQLPW() + ";";
-            return "Data Source=" + SQLServerName() + ";Initial Catalog=" + g_CompCode + ";" + "UId=" + SQLLoginID() + ";" + "Pwd=" + SQLPW() + ";";
+            return "Data Source=" + SQLServerName2() + ";Initial Catalog=" + g_CompCode + ";" + "UId=" + SQLLoginID2() + ";" + "Pwd=" + SQLPW2() + ";" /*+ "Multipleconnection=" + Multipleconnection() + ";"*/;
         }
-        public static string SqlConnectionString2()
-        {
-            //Data Source=AHMED-VAIO\SQL2008R2;Initial Catalog=focus50w0;UID=sa;PWD=focus;Integrated Security=false
-            var g_CompCode = "";
-            g_CompCode = "030";
-            try
-            {
-                g_CompCode = Default_Company2();
-            }
-            catch (Exception e)
-            {
-                g_CompCode = "1b0";
-                //throw;
-            }
-
-            //var clsRg = new clsReg();
-
-            //return "Data Source=" + clsRg.Read("SQLServerName") +";Initial Catalog=Focus80x0" +";UID=" + clsRg.Read("SQLLoginID") +";PWD=" + clsRg.Read("SQLPW") +";Integrated Security=false";
-            //return "Data Source=" + SQLServerName() + ";Initial Catalog=Focus8" + Default_Company() + ";" + "UId=" + SQLLoginID() + ";" + "Pwd=" + SQLPW() + ";";
-            //return "Data Source=" + SQLServerName() + ";Initial Catalog=Focus5" + g_CompCode + ";" + "UId=" + SQLLoginID() + ";" + "Pwd=" + SQLPW() + ";";
-            return "Data Source=" + SQLServerName2() + ";Initial Catalog=Focus5" + g_CompCode + ";" + "UId=" + SQLLoginID2() + ";" + "Pwd=" + SQLPW2() + ";";
-        }
+        
 
         public static void Write2ErrLog(string ex, string thevent)
         {
@@ -116,26 +117,31 @@ namespace FamilyCarePro.Classess
         }
         public static string SQLServerName2()
         {
-            return RegValue(Microsoft.Win32.RegistryHive.Users, ".DEFAULT\\Software\\FocusExternalModule", "SQLServerNameF", "");
+            return RegValue(Microsoft.Win32.RegistryHive.Users, ".DEFAULT\\Software\\FocusExternalModule", "Int_SqlServerName", "");
         }
 
         public static string SQLLoginID2()
         {
-            return RegValue(Microsoft.Win32.RegistryHive.Users, ".DEFAULT\\Software\\FocusExternalModule", "SQLLoginIDF", "");
+            return RegValue(Microsoft.Win32.RegistryHive.Users, ".DEFAULT\\Software\\FocusExternalModule", "Int_SQLLoginID", "");
         }
 
         public static string SQLPW2()
         {
-            return RegValue(Microsoft.Win32.RegistryHive.Users, ".DEFAULT\\Software\\FocusExternalModule", "SQLPWF", "");
+            return RegValue(Microsoft.Win32.RegistryHive.Users, ".DEFAULT\\Software\\FocusExternalModule", "Int_SQLPw", "");
         }
-        public static string Default_Company()
+        public static string Multipleconnection()
         {
-            return RegValue(Microsoft.Win32.RegistryHive.Users, ".DEFAULT\\Software\\focus7", "IntegratedDBName", "");
+            return RegValue(Microsoft.Win32.RegistryHive.Users, ".DEFAULT\\Software\\FocusExternalModule", "Multipleconnection", "");
 
         }
         public static string Default_Company2()
         {
-            return RegValue(Microsoft.Win32.RegistryHive.Users, ".DEFAULT\\Software\\Focus5", "Default Company", "");
+            return RegValue(Microsoft.Win32.RegistryHive.Users, ".DEFAULT\\Software\\FocusExternalModule", "IntegratedDBName", "");
+
+        }
+        public static string Default_Company()
+        {
+            return RegValue(Microsoft.Win32.RegistryHive.Users, ".DEFAULT\\Software\\FocusExternalModule", "Default Company", "");
 
         }
     }

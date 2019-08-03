@@ -15,7 +15,7 @@ namespace FamilyCarePro.Classess
         {
             var sConStr = ClsComm.SqlConnectionString();
             SqlConnection Con = new SqlConnection(sConStr);
-            var ConStr = ClsComm.SqlConnectionString2();
+            var ConStr = ClsComm.sqlConectionStr_IntDB();
             SqlConnection Conn = new SqlConnection(ConStr);
         }
 
@@ -151,7 +151,7 @@ namespace FamilyCarePro.Classess
         }
         public static DataSet GetDs2(string Qry)
         {
-            string connectionString = ClsComm.SqlConnectionString2();
+            string connectionString = ClsComm.sqlConectionStr_IntDB();
             //string connectionString = ConfigurationManager.ConnectionStrings["SQLCon"].ToString;
             SqlConnection connection = new SqlConnection(connectionString);
             if (connection.State != ConnectionState.Open)
